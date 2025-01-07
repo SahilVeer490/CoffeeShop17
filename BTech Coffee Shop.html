@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .coffee-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .coffee-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            width: calc(33.333% - 2rem);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .coffee-item h3 {
+            margin: 0 0 0.5rem;
+        }
+        .coffee-item p {
+            margin: 0 0 1rem;
+        }
+        .add-to-cart {
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-to-cart:hover {
+            background-color: #218838;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Coffee Shop!</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Our Coffee Selection</h2>
+        <div class="coffee-list" id="coffee-list">
+            <!-- Coffee items will be inserted here by JavaScript -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Coffee Shop. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Sample coffee data
+        const coffeeData = [
+            { id: 1, name: 'Espresso', price: 3.00 },
+            { id: 2, name: 'Latte', price: 4.50 },
+            { id: 3, name: 'Cappuccino', price: 4.00 },
+            { id: 4, name: 'Americano', price: 3.50 },
+        ];
+        
+        // Function to render coffee items
+        function renderCoffeeList() {
+            const coffeeListElement = document.getElementById('coffee-list');
+            coffeeListElement.innerHTML = coffeeData.map(coffee => `
+                <div class="coffee-item">
+                    <h3>${coffee.name}</h3>
+                    <p>Price: $${coffee.price.toFixed(2)}</p>
+                    <button class="add-to-cart" onclick="addToCart(${coffee.id})">Add to Cart</button>
+                </div>
+            `).join('');
+        }
+
+        // Function to handle adding coffee to cart
+        function addToCart(id) {
+            const coffee = coffeeData.find(coffee => coffee.id === id);
+            alert(`Added ${coffee.name} to the cart!`);
+        }
+
+        // Render the coffee list when the page loads
+        window.onload = renderCoffeeList;
+    </script>
+</body>
+</html>
